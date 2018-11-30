@@ -12,6 +12,14 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous"
     />
+    <link
+        rel="stylesheet"
+        href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css"
+    />
+    <link
+        rel="stylesheet"
+        href="https://static.fontawesome.com/css/fontawesome-app.css"
+    />
 
     <link rel="stylesheet" href="css/styles.css" type="text/css"/>
 </head>
@@ -24,7 +32,80 @@
         <div id="map"></div>
 
         <main role="main" class="container">
-
+            <div class="row">
+                <div class="col">
+                    <form id="marker-form" class="opacity-transition">
+                        <input type="hidden" name="id" value="" id="marker-id" />
+                        <div class="form-group row">
+                            <label for="marker-lat" class="col-sm-3 col-form-label">Latitude</label>
+                            <div class="col-sm-9">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="lat"
+                                    id="marker-lat"
+                                    value=""
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="marker-lng" class="col-sm-3 col-form-label">Longitude</label>
+                            <div class="col-sm-9">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="lng"
+                                    id="marker-lng"
+                                    value=""
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="marker-title" class="col-sm-3 col-form-label">Title</label>
+                            <div class="col-sm-9">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="title"
+                                    id="marker-title"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="marker-description" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea
+                                    class="form-control"
+                                    name="description"
+                                    id="marker-description"
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9">
+                                <button
+                                    id="marker-button-save"
+                                    type="submit"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fal fa-save fa-fw"></i> Save
+                                </button>
+                                <button id="marker-button-cancel" class="btn btn-link">
+                                    Cancel
+                                </button>
+                                <button
+                                    id="marker-button-delete"
+                                    class="btn btn-danger float-right"
+                                >
+                                    <i class="fal fa-trash-alt fa-fw"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </main>
 
         <script src="js/map.js"></script>
