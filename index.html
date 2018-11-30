@@ -32,6 +32,20 @@
         <div id="map"></div>
 
         <main role="main" class="container">
+            <div
+                id="fire-base-success"
+                class="alert alert-success opacity-transition delayed"
+                role="alert"
+                style="opacity: 0; height: 0; padding: 0; margin-bottom: 0;"
+            >Saved</div>
+
+            <div
+                id="fire-base-error"
+                class="alert alert-danger opacity-transition delayed"
+                role="alert"
+                style="opacity: 0; height: 0; padding: 0; margin-bottom: 0;"
+            ></div>
+
             <div class="row">
                 <div class="col">
                     <form id="marker-form" class="opacity-transition">
@@ -114,7 +128,7 @@
         <!-- Add additional services that you want to use -->
         <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
 
-        
+
         <script src="js/firebase.js"></script>
 
         <script src="js/map.js"></script>

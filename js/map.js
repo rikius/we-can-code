@@ -60,7 +60,7 @@
         if (tempDraggingMarker) {
             tempDraggingMarker.setMap(null);
         }
-        
+
         setAllMarkersDefaultStyle();
         setMarkerCurrentStyle(marker);
 

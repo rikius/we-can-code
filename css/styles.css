@@ -10,3 +10,20 @@
 #marker-form {
   opacity: 0;
 }
+
+
+.opacity-transition {
+  transition: 0.3s;
+  transition-duration: 0.3s;
+  transition-property: opacity;
+}
+
+.opacity-transition.delayed {
+  transition: 2s;
+  transition-duration: 2s;
+  transition-property: opacity;
+}
+
+.item-push-left {
+  margin-left: auto;
+}

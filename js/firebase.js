@@ -95,6 +95,8 @@
     // after save
     function afterUpdateAddMarkerItem(error) {
         console.log("data saved", error);
+
+        root.formSaved(error);
     }
 
     // creating helper function for creating/updating marker items in firebase
@@ -124,6 +126,8 @@
     function afterRemoveItem(error) {
         // displaying success remove action message
         console.log("marker deleted", error);
+
+        root.formSaved(error);
     }
 
     // removing form data

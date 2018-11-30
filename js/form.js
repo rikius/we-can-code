@@ -73,6 +73,22 @@
         root.fireBaseDeleteMarker(getFormObject());
     }
 
+    // ------------------------------------------------------------------------------------
+    // displaying action from server
+    function formSaved(error) {
+        var element;
+        if (error) {
+            element = document.getElementById("fire-base-error").innerHTML = error;
+        } else {
+            element = document.getElementById("fire-base-success");
+        }
+        hide(document.getElementById("marker-form"));
+
+        show(element);
+        setTimeout(function() {
+            hide(element);
+        }, 2000);
+    }
     /// ------------------------------------------------------------------------------------
     // utils
 
@@ -107,5 +123,6 @@
     /// ------------------------------------------------------------------------------------
     // exposing to global
     root.showFromData = showFromData;
+    root.formSaved = formSaved;
 
 })(typeof self !== "undefined" ? self : window);
