@@ -9,6 +9,8 @@
         document.getElementById("marker-lng").value = data.lng;
         document.getElementById("marker-title").value = data.title;
         document.getElementById("marker-description").value = data.description;
+
+        document.getElementById("marker-form").style.opacity = "1";
     }
 
     /// ------------------------------------------------------------------------------------
