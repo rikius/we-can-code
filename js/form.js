@@ -21,7 +21,27 @@
         document.getElementById("marker-title").value = data.title;
         document.getElementById("marker-description").value = data.description;
 
-        document.getElementById("marker-form").style.opacity = "1";
+        show(document.getElementById("marker-form"));
+    }
+
+    /// ------------------------------------------------------------------------------------
+
+    function hide(element) {
+        element.style.opacity = "0";
+        setTimeout(function() {
+            element.style.height = "0";
+            element.style.margin = "0";
+            element.style.padding = "0";
+            element.style.display = "none";
+        }, 500);
+    }
+
+    function show(element) {
+        element.style.height = "auto";
+        element.style["margin-bottom"] = "1rem";
+        element.style.padding = ".75rem 1.25rem";
+        element.style.opacity = "1";
+        element.style.display = "block";
     }
 
     /// ------------------------------------------------------------------------------------
@@ -40,7 +60,7 @@
         mouseEvent.preventDefault();
 
         // hiding form
-        document.getElementById("marker-form").style.opacity = "0";
+        hide(document.getElementById("marker-form"));
     }
 
     // ------------------------------------------------------------------------------------
