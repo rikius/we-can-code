@@ -21,6 +21,16 @@
     }
 
     /// ------------------------------------------------------------------------------------
+    // specify on cancel click event
+    function onCancelClick(mouseEvent) {
+        // stopping default click event behavior
+        mouseEvent.preventDefault();
+
+        // hiding form
+        document.getElementById("marker-form").style.opacity = "0";
+    }
+
+    /// ------------------------------------------------------------------------------------
     // utils
 
     // converting form data to object
@@ -39,6 +49,11 @@
     document
         .getElementById("marker-form")
         .addEventListener("submit", onFormSubmit);
+
+    // triggering cancel element
+    document
+        .getElementById("marker-button-cancel")
+        .addEventListener("click", onCancelClick);
 
     /// ------------------------------------------------------------------------------------
     // exposing to global
