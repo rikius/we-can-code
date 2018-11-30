@@ -8,8 +8,10 @@
         // Delete is not needed in this state.
         if (data.id) {
             document.getElementById("marker-button-delete").style.display = "inline-block";
+            document.getElementById("marker-button-cancel").style.display = "inline-block";
         } else {
             document.getElementById("marker-button-delete").style.display = "none";
+            document.getElementById("marker-button-cancel").style.display = "none";
         }
 
         //fill form values
