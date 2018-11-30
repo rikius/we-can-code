@@ -22,7 +22,43 @@
       streetViewControl: false,
       center: myLatLng
     });
+    googleMap.addListener("click", onMapClickEvent);
   }
+
+  /// ------------------------------------------------------------------------------------
+
+  // specify on map click event
+  function onMapClickEvent(event) {
+    createTempDraggingMarker(googleMap, event.latLng);
+  }
+
+  // temp marker
+  var tempDraggingMarker;
+
+  // creating temp marker that is not saved but showing it for user.
+  function createTempDraggingMarker(map, position) {
+    console.log("temp marker event on map");
+
+    if (!tempDraggingMarker) {
+      tempDraggingMarker = new google.maps.Marker({
+        position: position,
+        draggable: true,
+        map: map,
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 8,
+          strokeColor: "#393"
+        }
+      });
+    } else {
+      // restoring map
+      tempDraggingMarker.setMap(googleMap);
+      // updating marker position after click on map.
+      tempDraggingMarker.setPosition(position);
+    }
+  }
+
+  // ------------------------------------------------------------------------------------
 
   // exposing to global
   root.initMap = initMap;
