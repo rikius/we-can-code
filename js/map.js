@@ -56,6 +56,11 @@
         // this represents marker that is clicked on.
         var marker = this;
 
+        // remove temp marker if exists
+        if (tempDraggingMarker) {
+            tempDraggingMarker.setMap(null);
+        }
+        
         setAllMarkersDefaultStyle();
         setMarkerCurrentStyle(marker);
 
