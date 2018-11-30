@@ -32,6 +32,12 @@
         createTempDraggingMarker(googleMap, event.latLng);
     }
 
+    // specify on marker drag end event
+    function onMarkerDragEnd() {
+        // updating after drag end marker
+        root.showFromData(getMarkerData(tempDraggingMarker, {}));
+    }
+
     // temp marker
     var tempDraggingMarker;
 
@@ -50,6 +56,7 @@
                     strokeColor: "#393"
                 }
             });
+            tempDraggingMarker.addListener("dragend", onMarkerDragEnd);
         } else {
             // restoring map
             tempDraggingMarker.setMap(googleMap);
