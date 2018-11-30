@@ -57,6 +57,16 @@
         root.mapRemoveMarker(fireBaseGetMarkerData(data));
     }
 
+    // creating function that will respond on child_added
+    function markersOnAdded(data) {
+        root.mapAddMarker(fireBaseGetMarkerData(data));
+    }
+
+    // creating function that will respond on child_changed
+    function markersOnChange(data) {
+        root.mapUpdateMarker(fireBaseGetMarkerData(data));
+    }
+
     /// ------------------------------------------------------------------------------------
     // executed function after map initialized
 
@@ -65,6 +75,12 @@
         console.log("reading data");
 
         var markersRef = database.ref('markers');
+
+        // adding event listener on add
+        markersRef.on('child_added', markersOnAdded);
+
+        // adding event listener on change
+        markersRef.on('child_changed', markersOnChange);
 
         // adding event listener on remove
         markersRef.on('child_removed', markersOnRemove);

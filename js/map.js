@@ -98,6 +98,17 @@
         }
     }
 
+    // updating existing marker.
+    function mapUpdateMarker(markerData) {
+        var key = markerData.id;
+        var marker = markers[key];
+        if (marker) {
+            updateMarkerData(marker, markerData);
+        } else {
+            mapAddMarker(markerData);
+        }
+    }
+
     /// ------------------------------------------------------------------------------------
 
     // specify on map click event
@@ -190,5 +201,6 @@
     root.initMap = initMap;
     root.mapAddMarker = mapAddMarker;
     root.mapRemoveMarker = mapRemoveMarker;
+    root.mapUpdateMarker = mapUpdateMarker;
 
 })(typeof self !== "undefined" ? self : window);
