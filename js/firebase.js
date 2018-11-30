@@ -42,6 +42,30 @@
     }
 
     /// ------------------------------------------------------------------------------------
+    // creating function that will call after getting all marker items.
+    function afterReadList(list) {
+        console.log("list", list);
+
+        // double check if list is an array object
+        list.forEach(function (data) {
+            root.mapAddMarker(fireBaseGetMarkerData(data));
+        });
+    }
+
+    /// ------------------------------------------------------------------------------------
+    // executed function after map initialized
+
+    // read database and show data
+    function fireBaseLoadDataToMap() {
+        console.log("reading data");
+
+        var markersRef = database.ref('markers');
+
+        // querying db for markers
+        markersRef.once('value', afterReadList);
+    }
+
+    /// ------------------------------------------------------------------------------------
     // after save
     function afterUpdateAddMarkerItem(error) {
         console.log("data saved", error);
@@ -72,6 +96,16 @@
     /// ------------------------------------------------------------------------------------
     // utils
 
+    // prepare data for displaying marker on map
+    function fireBaseGetMarkerData(data) {
+        // markerdata expecting to be as we defined it in markerDatabaseBaseStructureData.
+        var markerData = data.val();
+
+        // firebase key is in different field need to get it from different parameter.
+        markerData.id = data.key;
+        return markerData;
+    }
+
     // accepting only items from stucture data.
     function copyMarkerDataValues(formMarkerData) {
         var structureObject = markerDatabaseBaseStructureData(),
@@ -86,6 +120,7 @@
 
     /// ------------------------------------------------------------------------------------
     // exports to global
+    root.fireBaseLoadDataToMap = fireBaseLoadDataToMap;
     root.fireBaseSaveFormData = fireBaseSaveFormData;
 
 })(typeof self !== 'undefined' ? self : window);

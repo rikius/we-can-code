@@ -23,8 +23,17 @@
             center: myLatLng
         });
         googleMap.addListener("click", onMapClickEvent);
+
+        root.fireBaseLoadDataToMap();
     }
 
+    /// ------------------------------------------------------------------------------------
+
+    // adding new marker to map.
+    // it is used when getting markers from backend
+    function mapAddMarker(markerData) {
+        console.log("add marker", markerData);
+    }
     /// ------------------------------------------------------------------------------------
 
     // specify on map click event
@@ -92,6 +101,8 @@
         };
     }
 
+    // ------------------------------------------------------------------------------------
     // exposing to global
     root.initMap = initMap;
+    root.mapAddMarker = mapAddMarker;
 })(typeof self !== "undefined" ? self : window);
