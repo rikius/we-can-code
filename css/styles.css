@@ -6,3 +6,7 @@
 .container {
   margin-top: 10px;
 }
+
+#marker-form {
+  opacity: 0;
+}
