@@ -3,6 +3,15 @@
     /// ------------------------------------------------------------------------------------
     // updating form data from marker
     function showFromData(data) {
+
+        // hiding delete button when we creating new element.
+        // Delete is not needed in this state.
+        if (data.id) {
+            document.getElementById("marker-button-delete").style.display = "inline-block";
+        } else {
+            document.getElementById("marker-button-delete").style.display = "none";
+        }
+
         //fill form values
         document.getElementById("marker-id").value = data.id;
         document.getElementById("marker-lat").value = data.lat;
