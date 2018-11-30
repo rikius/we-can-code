@@ -50,6 +50,8 @@
         list.forEach(function (data) {
             root.mapAddMarker(fireBaseGetMarkerData(data));
         });
+
+        root.mapChangeMapBounds();
     }
 
     // creating function that will respond on child_removed

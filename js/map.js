@@ -153,6 +153,16 @@
     }
 
     // ------------------------------------------------------------------------------------
+    function mapChangeMapBounds() {
+        var bounds = new google.maps.LatLngBounds();
+        for (var key in markers) {
+            if (markers.hasOwnProperty(key) && markers[key]) {
+                bounds.extend(markers[key].getPosition());
+            }
+        }
+        googleMap.fitBounds(bounds);
+    }
+    // ------------------------------------------------------------------------------------
 
     function setAllMarkersDefaultStyle() {
         for (var m in markers) {
@@ -202,5 +212,6 @@
     root.mapAddMarker = mapAddMarker;
     root.mapRemoveMarker = mapRemoveMarker;
     root.mapUpdateMarker = mapUpdateMarker;
+    root.mapChangeMapBounds = mapChangeMapBounds;
 
 })(typeof self !== "undefined" ? self : window);
