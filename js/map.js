@@ -28,11 +28,42 @@
     }
 
     /// ------------------------------------------------------------------------------------
+    // local memory storage for markers.
+    var markers = {};
+
+    var defaultIcon = {
+        path:
+            "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
+        fillColor: "Red",
+        fillOpacity: 1,
+        strokeColor: "Firebrick",
+        strokeWeight: 2,
+        scale: 0.7
+    };
 
     // adding new marker to map.
     // it is used when getting markers from backend
     function mapAddMarker(markerData) {
         console.log("add marker", markerData);
+        // same marker not need to remove or update it is automatically updated from google
+
+        var key = markerData.id;
+
+        // exits from function because we already have marker.
+        if (markers[key]) {
+            return;
+        }
+
+        var marker = new google.maps.Marker({
+            draggable: false,
+            map: googleMap,
+            animation: google.maps.Animation.DROP,
+            icon: defaultIcon
+        });
+
+        updateMarkerData(marker, markerData);
+
+        markers[key] = marker;
     }
     /// ------------------------------------------------------------------------------------
 
@@ -78,6 +109,14 @@
     }
 
     // ------------------------------------------------------------------------------------
+
+    function updateMarkerData(marker, markerData) {
+        // need to convert number. because we have string from DB
+        var position = { lat: Number(markerData.lat), lng: Number(markerData.lng) };
+        marker.setPosition(position);
+
+        marker.data = markerData;
+    }
 
     function getMarkerData(marker, markerData) {
         var id = "";
