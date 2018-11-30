@@ -41,6 +41,27 @@
         scale: 0.7
     };
 
+    var selectedIcon = {
+        path:
+            "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
+        fillColor: "Gold",
+        fillOpacity: 1,
+        strokeColor: "Goldenrod",
+        strokeWeight: 2,
+        scale: 0.7
+    };
+
+    // specify on marker click  event
+    function onMarkerClick() {
+        // this represents marker that is clicked on.
+        var marker = this;
+
+        setAllMarkersDefaultStyle();
+        setMarkerCurrentStyle(marker);
+
+        root.showFromData(getMarkerData(marker, marker.data));
+    }
+
     // adding new marker to map.
     // it is used when getting markers from backend
     function mapAddMarker(markerData) {
@@ -60,6 +81,8 @@
             animation: google.maps.Animation.DROP,
             icon: defaultIcon
         });
+
+        marker.addListener("click", onMarkerClick);
 
         updateMarkerData(marker, markerData);
 
@@ -109,6 +132,18 @@
     }
 
     // ------------------------------------------------------------------------------------
+
+    function setAllMarkersDefaultStyle() {
+        for (var m in markers) {
+            if (markers.hasOwnProperty(m)) {
+                markers[m].setIcon(defaultIcon);
+            }
+        }
+    }
+
+    function setMarkerCurrentStyle(marker) {
+        marker.setIcon(selectedIcon);
+    }
 
     function updateMarkerData(marker, markerData) {
         // need to convert number. because we have string from DB
