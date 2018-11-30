@@ -52,6 +52,11 @@
         });
     }
 
+    // creating function that will respond on child_removed
+    function markersOnRemove(data) {
+        root.mapRemoveMarker(fireBaseGetMarkerData(data));
+    }
+
     /// ------------------------------------------------------------------------------------
     // executed function after map initialized
 
@@ -60,6 +65,9 @@
         console.log("reading data");
 
         var markersRef = database.ref('markers');
+
+        // adding event listener on remove
+        markersRef.on('child_removed', markersOnRemove);
 
         // querying db for markers
         markersRef.once('value', afterReadList);
@@ -94,6 +102,22 @@
     }
 
     /// ------------------------------------------------------------------------------------
+    // after removing marker item
+    function afterRemoveItem(error) {
+        // displaying success remove action message
+        console.log("marker deleted", error);
+    }
+
+    // removing form data
+    function fireBaseDeleteMarker(data) {
+        if (data.id) {
+            database.ref('markers/' + data.id).remove(afterRemoveItem);
+        } else {
+            afterRemoveItem("id is not found");
+        }
+    }
+
+    /// ------------------------------------------------------------------------------------
     // utils
 
     // prepare data for displaying marker on map
@@ -122,5 +146,6 @@
     // exports to global
     root.fireBaseLoadDataToMap = fireBaseLoadDataToMap;
     root.fireBaseSaveFormData = fireBaseSaveFormData;
+    root.fireBaseDeleteMarker = fireBaseDeleteMarker;
 
 })(typeof self !== 'undefined' ? self : window);

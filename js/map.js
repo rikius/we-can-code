@@ -88,6 +88,16 @@
 
         markers[key] = marker;
     }
+
+    // delete marker from map and removes from memory
+    function mapRemoveMarker(markerData) {
+        var key = markerData.id;
+        if (markers[key]) {
+            markers[key].setMap(null);
+            delete markers[key];
+        }
+    }
+
     /// ------------------------------------------------------------------------------------
 
     // specify on map click event
@@ -179,4 +189,6 @@
     // exposing to global
     root.initMap = initMap;
     root.mapAddMarker = mapAddMarker;
+    root.mapRemoveMarker = mapRemoveMarker;
+
 })(typeof self !== "undefined" ? self : window);

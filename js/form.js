@@ -43,6 +43,16 @@
         document.getElementById("marker-form").style.opacity = "0";
     }
 
+    // ------------------------------------------------------------------------------------
+    // specify on delete click event
+    function onDeleteClick(mouseEvent) {
+        // stopping default click event behavior
+        mouseEvent.preventDefault();
+
+        // deleting marker from fire base
+        root.fireBaseDeleteMarker(getFormObject());
+    }
+
     /// ------------------------------------------------------------------------------------
     // utils
 
@@ -67,6 +77,12 @@
     document
         .getElementById("marker-button-cancel")
         .addEventListener("click", onCancelClick);
+
+
+    // triggering delete element
+    document
+        .getElementById("marker-button-delete")
+        .addEventListener("click", onDeleteClick);
 
     /// ------------------------------------------------------------------------------------
     // exposing to global
