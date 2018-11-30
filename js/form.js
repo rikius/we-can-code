@@ -30,7 +30,7 @@
         formSubmitEvent.preventDefault();
 
         // saving form data
-        console.log(getFormObject());
+        root.fireBaseSaveFormData(getFormObject());
     }
 
     /// ------------------------------------------------------------------------------------
